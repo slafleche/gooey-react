@@ -51,6 +51,8 @@
     "build": "run-p build:js build:types",
     "prebuild": "rimraf dist dist-types",
     "prepublishOnly": "npm test && npm run build",
+    "release": "node scripts/release.mjs",
+    "release:dry": "node scripts/release.mjs --dry-run",
     "test:watch": "jest --watch",
     "test": "jest",
     "ts": "tsc --noEmit"
