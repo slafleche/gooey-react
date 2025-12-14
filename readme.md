@@ -15,15 +15,20 @@ The 'gooey effect' has been made popular by various (amazing) blogposts over the
 
 ## Installation (~0.5 KB)
 ```sh
-npm install gooey-react
+npm install @slafleche/gooey-react
 ```
 
 ## Usage
 ```jsx
-import Goo from 'gooey-react'
+import Goo from '@slafleche/gooey-react'
 
 <Goo> … </Goo>
 ```
 You can put regular HTML elements inside `Goo`, but using an SVG is recommended for better browser support. Shape blobbing will be applied to everything within the component.
 
-[Visit the website](https://gooey-react.netlify.app/) for full documentation, properties and examples.
+Original documentation for the upstream project is still available at  
+[https://gooey-react.netlify.app/](https://gooey-react.netlify.app/) (for historical reference).  
+This fork includes its own up-to-date docs under `docs/`:
+
+- `cd docs && npm install && npm run dev` – local docs
+- `cd docs && npm run build` – production build for deployment
