@@ -6,6 +6,13 @@
 </p>
 The 'gooey effect' has been made popular by various (amazing) blogposts over the years. This tiny component makes it easy to use within React, and has improved the implementation. It's optimized to be as sharp/crisp as possible, since existing implementations can be a bit blurry. Safari support (which can be notorious, and is usually missing) has been added as well.
 
+> This fork is based on the original
+> [`gooey-react` by Luuk de Vlieger](https://github.com/luukdv/gooey-react).
+> It keeps the same API and effect, but updates the library, build, tests, and
+> docs to work cleanly with React 18 and modern tooling. The new docs are
+> simpler visually than the original Gatsby site, but are meant to be a
+> straightforward, up‑to‑date reference.
+
 ## Installation (~0.5 KB)
 ```sh
 npm install gooey-react

@@ -11,6 +11,11 @@
     "email": "info@luuk.site",
     "url": "https://www.luuk.site"
   },
+  "contributors": [
+    {
+      "name": "slafleche"
+    }
+  ],
   "files": [
     "dist",
     "dist-types"
