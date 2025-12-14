@@ -66,8 +66,31 @@ const ensureNpmLogin = () => {
   }
 }
 
+const hasUncommittedChanges = () => {
+  const result = spawnSync('git', ['status', '--porcelain'], {
+    encoding: 'utf8',
+    stdio: ['ignore', 'pipe', 'pipe'],
+    shell: process.platform === 'win32',
+  })
+
+  if (result.status !== 0) {
+    return false
+  }
+
+  return result.stdout.trim().length > 0
+}
+
 const main = async () => {
   const isDryRun = process.argv.slice(2).includes('--dry-run')
+
+  // 0) Safety check: avoid releasing with local changes
+  if (hasUncommittedChanges()) {
+    console.error(
+      '\n✖ Working tree has uncommitted or staged changes.\n' +
+        '  Please commit, stash, or discard them before running the release script.',
+    )
+    process.exit(1)
+  }
 
   // 1) Root checks: types, tests, build
   runStep('Type-checking library (npm run ts)', 'npm', ['run', 'ts'])
