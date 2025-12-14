@@ -89,16 +89,18 @@ const main = async () => {
       'Select version bump: (p)atch / (m)inor / (M)ajor',
       'p',
     )
-    const normalized = choice.toLowerCase()
-    if (normalized === 'p' || normalized === 'patch') {
+    const raw = choice.trim()
+    const normalized = raw.toLowerCase()
+
+    if (raw === '' || normalized === 'p' || normalized === 'patch') {
       bumpType = 'patch'
-    } else if (normalized === 'm' || normalized === 'minor') {
+    } else if (raw === 'm' || normalized === 'minor') {
       bumpType = 'minor'
-    } else if (normalized === 'major') {
+    } else if (raw === 'M' || normalized === 'major') {
       bumpType = 'major'
     } else {
       console.log(
-        'Unrecognized choice. Please enter "p", "m", "major", or press Enter for patch.',
+        'Unrecognized choice. Please enter "p", "m", "M", "patch", "minor", or "major".',
       )
     }
   }
