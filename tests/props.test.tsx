@@ -63,3 +63,37 @@ it(`applies style`, () => {
 
   expect(screen.getByTestId('element')).toHaveStyle(style)
 })
+
+it(`uses the same id for filter and element style`, () => {
+  const id = 'custom-id'
+
+  render(<Goo id={id}><div /></Goo>)
+
+  const filter = screen.getByTestId('filter')
+  const element = screen.getByTestId('element')
+
+  expect(filter.getAttribute('id')).toBe(id)
+  expect(element).toHaveStyle({ filter: `url(#${id})` })
+})
+
+it(`generates unique ids for multiple instances by default`, () => {
+  render(
+    <>
+      <Goo><div data-testid="inside-1" /></Goo>
+      <Goo><div data-testid="inside-2" /></Goo>
+    </>
+  )
+
+  const filters = screen.getAllByTestId('filter')
+  const elements = screen.getAllByTestId('element')
+
+  const firstId = filters[0].getAttribute('id')
+  const secondId = filters[1].getAttribute('id')
+
+  expect(firstId).toBeTruthy()
+  expect(secondId).toBeTruthy()
+  expect(firstId).not.toBe(secondId)
+
+  expect(elements[0]).toHaveStyle({ filter: `url(#${firstId})` })
+  expect(elements[1]).toHaveStyle({ filter: `url(#${secondId})` })
+})

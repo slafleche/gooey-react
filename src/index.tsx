@@ -1,11 +1,13 @@
 import React from 'react'
 
+let autoId = 0
+
 const Goo = ({
   children,
   className,
   composite = false,
   intensity = 'medium',
-  id = 'gooey-react',
+  id,
   style,
 }: {
   children: React.ReactNode;
@@ -23,6 +25,14 @@ const Goo = ({
   const b = '0 0 1 0 0'
   const a = `0 0 0 ${alpha} ${shift}`
 
+  const [generatedId] = React.useState(() => {
+    autoId += 1
+
+    return `gooey-react-${autoId}`
+  })
+
+  const filterId = id ?? generatedId
+
   return (
     <>
       <svg
@@ -36,7 +46,7 @@ const Goo = ({
           <filter
             colorInterpolationFilters="sRGB"
             data-testid="filter"
-            id={id}
+            id={filterId}
           >
             <feGaussianBlur
               data-testid="blur"
@@ -59,7 +69,7 @@ const Goo = ({
         data-testid="element"
         style={{
           ...style,
-          filter: `url(#${id})`,
+          filter: `url(#${filterId})`,
         }}
       >
         {children}

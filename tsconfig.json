@@ -5,6 +5,7 @@
     "jsx": "react",
     "moduleResolution": "Node",
     "outDir": "./dist-types",
+    "skipLibCheck": true,
     "strict": true,
     "target": "ESNext"
   },
