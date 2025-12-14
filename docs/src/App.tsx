@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import Goo from '@slafleche/gooey-react'
+import Goo from '@lafleche/gooey-react'
 
 type PageId =
   | 'home'
@@ -232,11 +232,11 @@ function HomePage({ onNavigate }: { onNavigate: (page: PageId) => void }) {
       <h2 style={{ fontSize: '1.125rem', margin: '1.5rem 0 0.5rem' }}>
         Installation (±0.5 KB)
       </h2>
-      <CodeBlock>npm install @slafleche/gooey-react</CodeBlock>
+      <CodeBlock>npm install @lafleche/gooey-react</CodeBlock>
 
       <h2 style={{ fontSize: '1.125rem', margin: '1.5rem 0 0.5rem' }}>Usage</h2>
       <CodeBlock>
-        <span>import Goo from &apos;@slafleche/gooey-react&apos;</span>
+        <span>import Goo from &apos;@lafleche/gooey-react&apos;</span>
         {'\n'}
         {'\n'}
         {'<'}Goo{`>\n  <svg>\n    <circle />\n    <circle />\n  </svg>\n</`}Goo{'>'}
@@ -599,7 +599,7 @@ function TutorialPage({ onNavigate }: { onNavigate: (page: PageId) => void }) {
         First, install the dependency with NPM or Yarn.
       </p>
 
-      <CodeBlock>npm install @slafleche/gooey-react</CodeBlock>
+      <CodeBlock>npm install @lafleche/gooey-react</CodeBlock>
 
       <p style={{ margin: '1rem 0', maxWidth: 640, lineHeight: 1.6 }}>
         Next, we&apos;ll add some elements inside the component. You can use
@@ -608,7 +608,7 @@ function TutorialPage({ onNavigate }: { onNavigate: (page: PageId) => void }) {
       </p>
 
       <CodeBlock>
-        <span>import Goo from &apos;@slafleche/gooey-react&apos;</span>
+        <span>import Goo from &apos;@lafleche/gooey-react&apos;</span>
         {'\n'}
         {'\n'}
         {'<'}Goo{`>\n  <svg>\n    <circle />\n    <circle />\n  </svg>\n</`}Goo{'>'}

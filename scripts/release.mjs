@@ -49,6 +49,23 @@ const readPackageVersion = () => {
   return pkg.version
 }
 
+const ensureNpmLogin = () => {
+  const result = spawnSync('npm', ['whoami'], {
+    encoding: 'utf8',
+    stdio: ['ignore', 'pipe', 'pipe'],
+    shell: process.platform === 'win32',
+  })
+
+  if (result.status !== 0) {
+    console.error(
+      '\n✖ Unable to determine npm user (`npm whoami` failed). ' +
+        'You are likely not logged in or your auth token has expired.\n' +
+        '  Run `npm login` to authenticate, then re-run this release script.',
+    )
+    process.exit(result.status ?? 1)
+  }
+}
+
 const main = async () => {
   const isDryRun = process.argv.slice(2).includes('--dry-run')
 
@@ -109,14 +126,26 @@ const main = async () => {
 
   const newVersion = readPackageVersion()
   console.log(`\n✓ Version updated: ${currentVersion} -> ${newVersion}`)
-  console.log('\nNext steps:')
-  console.log('  1) Review and commit the version bump + changelog if needed.')
-  console.log('  2) Publish to npm with:')
-  console.log('       npm publish')
+
+  // Ensure the user is logged in before attempting npm publish
+  ensureNpmLogin()
+
+  const publishConfirm = await prompt(
+    `Publish version ${newVersion} to npm now? (y/N)`,
+    'n',
+  )
+  if (!/^y(es)?$/i.test(publishConfirm)) {
+    console.log(
+      `Skipping npm publish for ${newVersion}. You can run "npm publish" manually later if desired.`,
+    )
+    process.exit(0)
+  }
+
+  runStep(`Publishing ${newVersion} to npm`, 'npm', ['publish'])
+  console.log(`\n✓ Published ${newVersion} to npm.`)
 }
 
 main().catch((error) => {
   console.error('Unexpected release script error:', error)
   process.exit(1)
 })
-

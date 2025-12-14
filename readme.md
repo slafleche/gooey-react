@@ -15,12 +15,12 @@ The 'gooey effect' has been made popular by various (amazing) blogposts over the
 
 ## Installation (~0.5 KB)
 ```sh
-npm install @slafleche/gooey-react
+npm install @lafleche/gooey-react
 ```
 
 ## Usage
 ```jsx
-import Goo from '@slafleche/gooey-react'
+import Goo from '@lafleche/gooey-react'
 
 <Goo> … </Goo>
 ```

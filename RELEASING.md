@@ -1,7 +1,7 @@
-# Releasing @slafleche/gooey-react
+# Releasing @lafleche/gooey-react
 
 This document describes how to cut a new version of
-`@slafleche/gooey-react` and publish it to npm using the lightweight
+`@lafleche/gooey-react` and publish it to npm using the lightweight
 local release script.
 
 ## Prerequisites
@@ -64,21 +64,26 @@ From the project root:
 
 4. After the script completes successfully:
 
-   - Review and commit the version bump (and changelog entry, if you
-     update `CHANGELOG.md`).
-   - Push your changes and tag as you normally would.
-   - Publish to npm:
+   - If you confirmed the final publish prompt, the package has already
+     been published to npm and `prepublishOnly` has re-run tests/build as
+     a safety net:
+
+     ```json
+     "prepublishOnly": "npm test && npm run build"
+     ```
+
+   - If you declined the publish prompt, you can later run:
 
      ```sh
      npm publish
      ```
 
-   - The `prepublishOnly` hook is configured to run tests and build again
-     before the publish actually proceeds:
+     (The same `prepublishOnly` hook will run before the publish goes
+     through.)
 
-     ```json
-     "prepublishOnly": "npm test && npm run build"
-     ```
+   - In both cases, you should still review and commit the version bump
+     (and any changelog updates), then push your changes/tags as you
+     normally would.
 
 ## Notes
 

@@ -1,10 +1,15 @@
 {
-  "name": "@slafleche/gooey-react",
-  "version": "1.2.0",
+  "name": "@lafleche/gooey-react",
+  "version": "1.1.0",
   "description": "The gooey effect for React",
   "homepage": "https://github.com/slafleche/gooey-react",
-  "repository": "github:slafleche/gooey-react",
-  "bugs": "https://github.com/slafleche/gooey-react/issues",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/slafleche/gooey-react.git"
+  },
+  "bugs": {
+    "url": "https://github.com/slafleche/gooey-react/issues"
+  },
   "license": "MIT",
   "author": {
     "name": "Luuk de Vlieger",
