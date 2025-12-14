@@ -804,6 +804,9 @@ function TutorialPage({ onNavigate }: { onNavigate: (page: PageId) => void }) {
 }
 
 function ExamplesPage({ onNavigate }: { onNavigate: (page: PageId) => void }) {
+  const [playIntensity, setPlayIntensity] = useState<Intensity>('medium')
+  const [playComposite, setPlayComposite] = useState(false)
+
   return (
     <>
       <h1 style={{ fontSize: '1.6rem', marginBottom: '0.75rem' }}>Examples</h1>
@@ -949,6 +952,77 @@ function ExamplesPage({ onNavigate }: { onNavigate: (page: PageId) => void }) {
                     'blob_one 3s ease-in-out -3s infinite alternate' as any,
                 }}
               />
+            </g>
+          </svg>
+        </Goo>
+      </div>
+
+      <h2 style={{ fontSize: '1.15rem', margin: '1.5rem 0 0.5rem' }}>
+        Interactive playground
+      </h2>
+      <p style={{ marginBottom: '0.75rem', maxWidth: 640, lineHeight: 1.6 }}>
+        Use the controls below to tweak <code>intensity</code> and{' '}
+        <code>composite</code> on a simple example. This is how different
+        values affect the same set of shapes.
+      </p>
+      <div
+        style={{
+          display: 'flex',
+          flexWrap: 'wrap',
+          gap: '1rem',
+          alignItems: 'center',
+          marginBottom: '0.75rem',
+        }}
+      >
+        <label style={{ fontSize: '0.9rem' }}>
+          <span style={{ marginRight: '0.35rem' }}>Intensity:</span>
+          <select
+            value={playIntensity}
+            onChange={(event) =>
+              setPlayIntensity(event.target.value as Intensity)
+            }
+            style={{
+              backgroundColor: '#020617',
+              color: '#e5e7eb',
+              borderRadius: 4,
+              border: '1px solid rgba(148,163,184,0.7)',
+              padding: '0.1rem 0.35rem',
+              fontSize: '0.9rem',
+            }}
+          >
+            <option value="weak">weak</option>
+            <option value="medium">medium</option>
+            <option value="strong">strong</option>
+          </select>
+        </label>
+        <label style={{ fontSize: '0.9rem', display: 'flex', alignItems: 'center' }}>
+          <input
+            type="checkbox"
+            checked={playComposite}
+            onChange={(event) => setPlayComposite(event.target.checked)}
+            style={{ marginRight: '0.35rem' }}
+          />
+          composite
+        </label>
+      </div>
+      <div style={{ margin: '0 0 1.75rem' }}>
+        <Goo intensity={playIntensity} composite={playComposite}>
+          <svg
+            role="img"
+            aria-label="Interactive gooey playground"
+            width="256"
+            height="256"
+          >
+            <g style={{ animation: 'sway 3s ease-in-out infinite alternate' as any }}>
+              <circle
+                cx="42%"
+                cy="42%"
+                r="28"
+                fill="lightcoral"
+                style={{ animation: 'drop 1.8s ease-in-out infinite alternate' }}
+              />
+              <circle cx="60%" cy="52%" r="26" fill="lightskyblue" />
+              <circle cx="48%" cy="64%" r="22" fill="plum" />
             </g>
           </svg>
         </Goo>
